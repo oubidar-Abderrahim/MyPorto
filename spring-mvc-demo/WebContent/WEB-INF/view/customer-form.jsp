@@ -26,12 +26,12 @@
 		
 		<br><br>
 
-		Free passes: <form:input path="age" />
+		Age (*): <form:input path="age" />
 		<form:errors path="age" cssClass="error" />
 		
 		<br><br>
 
-		Postal Code: <form:input path="email" />
+		Email: <form:input path="email" />
 		<form:errors path="email" cssClass="error" />
 		
 		<br><br>
