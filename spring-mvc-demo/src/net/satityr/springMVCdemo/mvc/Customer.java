@@ -16,16 +16,20 @@ public class Customer {
   [a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?
   :25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])";
 
-  @NotNull(message="is required")
+ 	@NotNull(message="is required")
 	private String firstName;
 	
 	
 	@Size(min=1, message="is required")
 	private String lastName;
 
+	@NotNull(message="is required")
 	@Min(value=18, message="you're too young")
 	@Max(value=30, message="you're too old")
-	private int age;
+	private Integer age;
+	
+	// we needed Integer instead of int to avoid problems if it left blank
+	// blank or space means String and error failed conversion String to int, but with Integer OK!
   
   @Pattern(regexp="EMAIL_REGEX", message="please enter a valid email")
 	private String email;
@@ -39,11 +43,11 @@ public class Customer {
 	}
 	
 
-	public int getAge() {
+	public Integer getAge() {
 		return age;
 	}
 
-	public void setAge(int age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 
