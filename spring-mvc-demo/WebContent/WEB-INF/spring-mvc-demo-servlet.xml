@@ -31,7 +31,12 @@
 
 	<!-- Step 7: Add support for static ressources CSS,images,JavaScript -->
 	<mvc:resources location="/Assets/" mapping="/Assets/**" />
-
+	
+	<!-- Step 8: Load custom message error for validation: src/resources/messages.properties (name & path must be respected) -->
+	<bean id="messageSource"
+	      class="org.springframework.context.support.ResourceBundleMessageSource" >
+		<property name="basenames" value="resources/messages" />
+	</bean>
 
 </beans>
 
