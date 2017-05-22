@@ -6,6 +6,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import net.satityr.springMVCdemo.mvc.validation.CourseCode;
+
 public class Customer {
 
   // the regex from http://emailregex.com/ is 99.99% to work !
@@ -31,7 +33,7 @@ public class Customer {
 	// we needed Integer instead of int to avoid problems if it left blank
 	// blank or space means String and error failed conversion String to int, but with Integer OK!
   
-  @Pattern(regexp="EMAIL_REGEX", message="please enter a valid email")
+ 	@Pattern(regexp="EMAIL_REGEX", message="please enter a valid email")
 	private String email;
 	
 	public String getEmail() {
@@ -42,6 +44,16 @@ public class Customer {
 		this.email = email;
 	}
 	
+	@CourseCode(value="sat" , message="Must start with (sat)")
+	private String courseCode;
+	
+	public String getCourseCode() {
+		return courseCode;
+	}
+
+	public void setCourseCode(String courseCode) {
+		this.courseCode = courseCode;
+	}	
 
 	public Integer getAge() {
 		return age;
