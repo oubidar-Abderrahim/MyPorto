@@ -20,6 +20,9 @@ Age: ${customer.age}
 
 email: ${customer.email}
 
+<br><br>
+
+Course Code: ${customer.courseCode}
 
 </body>
 
