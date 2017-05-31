@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head></h:head>
+<body>
+
+	<h:form>
+		<h:inputText id="name" value="#{ajaxBean.testAjax}"></h:inputText>
+		<br></br>
+		<h:inputText value="#{ajaxBean.testAjaxAcommp}"></h:inputText>
+		<br></br>
+
+		<h:commandButton value="With Ajax">
+			<f:ajax execute="name" render="output" />
+		</h:commandButton>
+
+		<br></br>
+		<h:commandButton value="Without Ajax" action="#" />
+
+		<h2>
+			<h:outputText id="output" value="#{ajaxBean.testAjax}" />
+		</h2>
+		<br></br>
+		<h2>
+			<h:outputText value="#{ajaxBean.testAjaxAcommp}" />
+		</h2>
+	</h:form>
+
+</body>
+</html>

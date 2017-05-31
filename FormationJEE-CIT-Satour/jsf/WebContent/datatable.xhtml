@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	>
+
+	
+<f:event listener="#{user.isUserListEmpty}" type="preRenderView" />
+<h:head>
+<h:outputStylesheet library="css" name="datatable.css"/>
+</h:head>
+<body>
+ 
+<h:form>
+<h1>#{user.editedId}</h1>
+	<h:dataTable value="#{user.userList}" var="item" styleClass="bordered" border="0"  >
+		<h:column>
+			<f:facet name="header">ID</f:facet>
+			<h:outputText value="#{item.id}" rendered="#{user.editedId ne item.id}" />
+			<h:inputText value="#{item.id}" rendered="#{user.editedId eq item.id}" />
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Email</f:facet>
+			<h:outputText value="#{item.email}" rendered="#{user.editedId ne item.id}" />
+			<h:inputText value="#{item.email}" rendered="#{user.editedId eq item.id}" />
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Password</f:facet>
+			<h:outputText value="#{item.password}" rendered="#{user.editedId ne item.id}"/>
+			<h:inputText value="#{item.password}" rendered="#{user.editedId eq item.id}" />
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Delete</f:facet>
+			<h:commandButton action="#{user.delete(item.id)}" value="delete" rendered="#{user.editedId ne item.id}" />
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Edit/Save</f:facet>
+			<h:commandButton action="#{user.edit(item.id)}" value="edit" rendered="#{user.editedId ne item.id}" />
+			<h:commandButton action="#{user.save(item.id)}" value="save" rendered="#{user.editedId eq item.id}" />
+		</h:column>
+	</h:dataTable>
+</h:form>
+<h:form id="steps">
+	<h:panelGroup layout="block">
+		
+			<h:message for="email" style="color:red"/>
+			Email: 
+			<h:inputText id="email" value="#{user.userToAdd.email}"   >
+				<f:validator validatorId="com.bean.validator.EmailAliasValidator"/>
+			</h:inputText>
+			
+			<br></br>
+			<h:message  for="pwd" style="color:red"  />
+			Password:
+			<h:inputText id="pwd" label="password field" value="#{user.userToAdd.password}" validatorMessage="zayzay doit pas zayzay" >
+				<f:validateLength maximum="6" minimum="2" />
+			</h:inputText>
+			<br></br>
+			<h:commandButton action="#{user.add()}" value="add" />
+	</h:panelGroup>
+</h:form>
+</body>
+</html>
