@@ -165,6 +165,9 @@ MVC 2 un seul controlleur pour tout les liens
 
 jsp.userBean setProperty look it up
 
+
+Asynch Tuto : http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/async-servlet/async-servlets.html
+
 ************************************************************************
 instancier le model depuis JSP :
 
@@ -228,3 +231,6 @@ java project - preference - projectFacet - JPA
 JPQL apprendre
 
 destribution nexus pour mettre son propre lib pour utiliser maven (architech 20ans)
+
+
+Site reference JPA : http://www.objectdb.com/api/java/jpa
