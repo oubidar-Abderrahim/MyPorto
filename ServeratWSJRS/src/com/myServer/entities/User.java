@@ -11,13 +11,20 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnorProperties;
 
+
+/*
+* the deserialize but not serialize the password wasn't tested, possible solution in here 
+*
+*/
 
 
 @Entity
+@JsonIgnoreProperties("password") //other possible solution are below, try any combination that work
 @Table(name="appuser")
-@JsonIgnoreProperties("password")
 public class User implements Serializable {
 
 	
@@ -38,6 +45,7 @@ public class User implements Serializable {
 	@Column(name="email")
 	private String email;
 	
+	@JsonProperty(access = Access.WRITE_ONLY ) // Or (access = JsonProperty.Access.WRITE_ONLY ) or not use it (see getter & setter )
 	@Column(name="pass")
 	private String password;
 
@@ -107,11 +115,12 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	@JsonIgnore
+	@JsonIgnore // we don't want to serialize the password but we want to deserialized it
 	public String getPassword() {
 		return password;
 	}
 
+	@JsonSetter // or @JsonProperty depends on the version of jackson used
 	public void setPassword(String password) {
 		this.password = password;
 	}
