@@ -20,14 +20,26 @@ public class UserBusiness {
 	}
 
 	public List<User> seeAllUsers() {
+		
+		userDao.initFactory();
 
-		return userDao.findAll();
+		List<User> ls = userDao.findAll();
+		
+		userDao.closeFactory();
+		
+		return ls;
 	}
 	
 
 	public User getThisUser(String userName) {
+		
+		userDao.initFactory();
 
-		return userDao.findByUsername(userName);
+		User u = userDao.findByUsername(userName);
+		
+		userDao.closeFactory();
+		
+		return u;
 	}
 	
 	public Message signUp(User user) {
@@ -35,6 +47,8 @@ public class UserBusiness {
 		User tempUser = null ;
 		boolean hasError = false ;
 		List<String> errorMsgs = new ArrayList<>();
+		
+		userDao.initFactory();
 		
 		tempUser = userDao.findByUsername(user.getUserName());
 		
@@ -44,6 +58,8 @@ public class UserBusiness {
 			hasError = true;
 			tempUser = null ;
 		}
+		userDao.closeFactory();
+		userDao.initFactory();
 		
 		tempUser = userDao.findByEmail(user.getEmail());
 		
@@ -53,13 +69,18 @@ public class UserBusiness {
 			hasError = true;
 			tempUser = null ;
 		}
+		userDao.closeFactory();
 		
 		if( !hasError ){
+			
+			userDao.initFactory();
 			
 			hasError = !(userDao.add(user));
 			
 			if( hasError )
 				errorMsgs.add("Somthing went wrong with our database");
+			
+			userDao.closeFactory();
 		}
 		
 		return new Message(hasError,errorMsgs.toArray(new String[0]));
@@ -71,6 +92,8 @@ public Message logIn(String userName, String password) {
 		User tempUser = null ;
 		boolean hasError = false ;
 		List<String> errorMsgs = new ArrayList<>();
+	
+		userDao.initFactory();
 		
 		tempUser = userDao.findForAuthen(userName, password);
 		
@@ -79,6 +102,8 @@ public Message logIn(String userName, String password) {
 			errorMsgs.add("Invalid UserName or Password");
 			hasError = true;
 		}
+	
+		userDao.closeFactory();
 		
 		return new Message(hasError,errorMsgs.toArray(new String[0]));
 		
