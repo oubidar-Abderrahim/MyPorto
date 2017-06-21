@@ -6,6 +6,10 @@ import com.myServer.entities.User;
 
 public interface UserDAO {
 	
+	public void initFactory();
+	
+	public void closeFactory();
+	
 	public boolean add(User u);
 	
 	public boolean update(User u);
