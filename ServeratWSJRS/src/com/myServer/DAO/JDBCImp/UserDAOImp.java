@@ -13,11 +13,19 @@ import com.myServer.entities.User;
 import java.sql.Connection;
 
 
+/*
+
+could not connect or register my driver even though i put it in build path, tomcats lib, jre/lib/ext, deploiment assembly
+tested old & new versions , normal jar and bin jar
+finally give up and use Hibernate So everything here may still have a lot of errors
+
+DON'T CARE   */
+
 public class UserDAOImp implements UserDAO {
 	
 	private final String jdbcUri = "jdbc:mysql://localhost:3306/gestionvol";
 	private final String jdbcUser = "user" ;
-	private final String jdbcPass = "yassine" ;
+	private final String jdbcPass = "pass" ;
 	
 	private Connection mysqlConnection = null ;
 	
@@ -42,6 +50,10 @@ public class UserDAOImp implements UserDAO {
 		}
 	}
 
+		public void initFactory(){}
+	
+	public void closeFactory(){}
+	
 	@Override
 	public boolean add(User u) {
 		
