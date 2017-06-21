@@ -20,28 +20,24 @@ public class UserDAOHibernateImp implements UserDAO {
 				.addAnnotatedClass(User.class).buildSessionFactory();
 	}
 	
-	public void initSession() {
-		
-		if (factory == null) 
-			this.factory = new Configuration().configure()
+	
+	
+	@Override
+	public void initFactory(){
+		this.factory = new Configuration().configure()
 			.addAnnotatedClass(User.class).buildSessionFactory();
-		
-		if (session == null )
 		this.session = factory.getCurrentSession();
 	}
 	
-	public void closeSession() {
-		
+	@Override
+	public void closeFactory(){
 		session.close();
 		factory.close();
-		
 	}
 	
 
 	@Override
 	public boolean add(User u) {
-
-		initSession();
 		
 		boolean status = false;
 		
@@ -64,16 +60,12 @@ public class UserDAOHibernateImp implements UserDAO {
 			status = false;
 
 		}
-
-		closeSession();
 		
 		return status;
 	}
 
 	@Override
 	public boolean update(User u) {
-		
-		initSession();
 
 		boolean status = false;
 
@@ -96,15 +88,11 @@ public class UserDAOHibernateImp implements UserDAO {
 			status = false;
 
 		}
-		
-		closeSession();
 		return status;
 	}
 
 	@Override
 	public User findByUsername(String userName) {
-		
-		initSession();
 
 		User user = null;
 
@@ -123,7 +111,6 @@ public class UserDAOHibernateImp implements UserDAO {
 		}
 
 		finally {
-			closeSession();
 		}
 
 		return user;
@@ -132,7 +119,6 @@ public class UserDAOHibernateImp implements UserDAO {
 	@Override
 	public User findByEmail(String email) {
 		
-		initSession();
 
 		User user = null;
 
@@ -150,7 +136,6 @@ public class UserDAOHibernateImp implements UserDAO {
 		}
 
 		finally {
-			closeSession();
 		}
 
 		return user;
@@ -159,8 +144,6 @@ public class UserDAOHibernateImp implements UserDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> findAll() {
-		
-		initSession();
 
 		List<User> users = null;
 
@@ -177,7 +160,6 @@ public class UserDAOHibernateImp implements UserDAO {
 		}
 
 		finally {
-			closeSession();
 		}
 
 		return users;
@@ -185,8 +167,6 @@ public class UserDAOHibernateImp implements UserDAO {
 
 	@Override
 	public User findByID(int id) {
-		
-		initSession();
 
 		User user = null;
 
@@ -203,7 +183,6 @@ public class UserDAOHibernateImp implements UserDAO {
 		}
 
 		finally {
-			closeSession();
 		}
 
 		return user;
@@ -213,7 +192,6 @@ public class UserDAOHibernateImp implements UserDAO {
 	@Override
 	public User findForAuthen(String userName, String password) {
 
-		initSession();
 		
 		User user = null;
 
@@ -233,7 +211,6 @@ public class UserDAOHibernateImp implements UserDAO {
 		}
 
 		finally {
-			closeSession();
 		}
 
 		return user;
@@ -242,7 +219,6 @@ public class UserDAOHibernateImp implements UserDAO {
 	@Override
 	public boolean delete(User u) {
 		
-		initSession();
 		
 		boolean status = false;
 
@@ -267,7 +243,6 @@ public class UserDAOHibernateImp implements UserDAO {
 		}
 
 		finally {
-			closeSession();
 		}
 
 		return status;
