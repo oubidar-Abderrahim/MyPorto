@@ -46,7 +46,6 @@ tr:nth-child(odd) {background: #BBBBBB}
 	background: #cccccc;
 }
 
-
 a:link {
     color: blue;
     text-decoration: none;
@@ -70,4 +69,3 @@ a:active {
     color: #d60196;
     text-decoration: underline;
 }
-
