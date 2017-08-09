@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<body>
+	
+	<h:form >
+	<h:outputText value="#{userSample.name}" rendered="#{userSample.edit}" />
+	<br></br>
+	<h:outputText value="#{userSample.email}"  rendered="#{userSample.edit}"/>
+	<br></br>
+	<h:commandButton value="edit" rendered="#{userSample.edit}" action="#{userSample.setEditMode()}" />
+
+
+
+<h:outputLabel value=" Name:"   rendered="#{ not userSample.edit}" /> <h:inputText value="#{userSample.name}"  rendered="#{ not userSample.edit}" />
+		<br></br>
+
+<h:outputLabel value=" Email: "  rendered="#{ not userSample.edit}"  /> <h:inputText value="#{userSample.email}" rendered="#{ not userSample.edit}" />
+		<br></br>
+		
+		<h:commandButton value="save" rendered="#{ not userSample.edit}" action="#{userSample.setSaveMode()}" />
+	</h:form>
+</body>
+</html>
