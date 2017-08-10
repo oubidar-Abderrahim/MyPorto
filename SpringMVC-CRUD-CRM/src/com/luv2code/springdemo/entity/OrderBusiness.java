@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 @Table(name="order_business")
@@ -31,6 +33,7 @@ public class OrderBusiness {
   
   @Column(name="date_of_purchase")
   @Temporal(TemporalType.DATE)
+  @DateTimeFormat(pattern = "dd/MM/yyyy")
   private Date dateOfPurchase ;
   
   @OneToOne(cascade=CascadeType.ALL)
